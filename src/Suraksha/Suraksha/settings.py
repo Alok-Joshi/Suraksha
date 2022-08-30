@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'data_streamer',
+    'device_auth',
+    'gps_map',
+    'login',
+    'register',
 ]
 
 MIDDLEWARE = [
