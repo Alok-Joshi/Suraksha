@@ -7,6 +7,14 @@ import asyncio
 REDIS_URL = "redis://127.0.0.1:6379" 
 
 #TODO: Remove this hardcoding and take the redis url from environment variables
+#TODO: Create an actual gps coords file and test the script
+#TODO: Comment the main function
+
+#GPS coordinate file: 
+#lat long
+#lat long
+# and so on
+
 
 help_message = """
                   Usage: python3 publisher.py path_to_gps_file redis_channel_name time
