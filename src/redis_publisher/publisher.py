@@ -1,30 +1,24 @@
 import sys
 import time
+import logging
+import os
+from dotenv import load_dotenv
 import aioredis
 import asyncio
-import logging
+
 logging.basicConfig(filename="publog.txt",filemode = "w",level = logging.INFO)
 
-REDIS_URL = "redis://127.0.0.1:6379" 
-
-#TODO: Remove this hardcoding and take the redis url from environment variables
-#TODO: Create an actual gps coords file and test the script
-#TODO: Comment the main function
-
-#GPS coordinate file: 
-#lat long
-#lat long
-# and so on
-
+load_dotenv("url.env") #will load the environment variables from the .env file in the same dir
+REDIS_URL = os.getenv("REDIS_URL")
 
 help_message = """
                   Usage: python3 publisher.py path_to_gps_file redis_channel_name time
                     - time should be in seconds
                   example: python3 publisher.py gps_dat.txt gps_dev_23  2
                   """
-                
-async def main():
 
+async def main():
+    """ The main function.It opens the file containing gps_coordinates, loads the coordinates in a list,connects to redis, loops through the coordinates and publishes them to the given channel """
     if(len(sys.argv)>1 and sys.argv[1] == 'help'):
         print(help_message)
         return;
@@ -42,14 +36,13 @@ async def main():
             gps_coordinates_file = open(file_path,"r")
             gps_coordinates = list(gps_coordinates_file.readlines())
 
-            logging.info("Starting publisher..")
             for coords in gps_coordinates:
                 await redis_client.publish(channel_name,coords)
                 logging.info(str(coords))
-
                 if(sleep_time>0):
                     time.sleep(sleep_time)
 
+            gps_coordinates_file.close()
         except Exception as e:
             print(e)
 
