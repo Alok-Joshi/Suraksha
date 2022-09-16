@@ -2,7 +2,8 @@ import sys
 import time
 import aioredis
 import asyncio
-
+import logging
+logging.basicConfig(filename="publog.txt",filemode = "w",level = logging.INFO)
 
 REDIS_URL = "redis://127.0.0.1:6379" 
 
@@ -34,14 +35,18 @@ async def main():
         try:
             file_path = sys.argv[1]
             channel_name = sys.argv[2]
-            sleep_time = int(sys.argv[3])
+            sleep_time = float(sys.argv[3])
+            logging.info(""" gps_coord file: {file_path} \n redis channel_name : {channel_name} \n sleep time: {sleep_time} \n """)
 
             redis_client = aioredis.from_url(REDIS_URL)
             gps_coordinates_file = open(file_path,"r")
             gps_coordinates = list(gps_coordinates_file.readlines())
 
+            logging.info("Starting publisher..")
             for coords in gps_coordinates:
                 await redis_client.publish(channel_name,coords)
+                logging.info(str(coords))
+
                 if(sleep_time>0):
                     time.sleep(sleep_time)
 
