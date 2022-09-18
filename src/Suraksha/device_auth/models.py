@@ -7,5 +7,5 @@ class Device(models.Model):
     used = models.BooleanField(default=0)
 
 class owns(models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
-    device = models.ForeignKey(Device, on_delete=models.PROTECT)
+    user = models.CharField(max_length=200, null=False)
+    device = models.CharField(max_length=200, null=False)

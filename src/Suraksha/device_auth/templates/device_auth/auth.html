@@ -7,7 +7,10 @@
     <title>Authenticate Device</title>
 </head>
 <body>
-    {% csrf_token %}
-    This is the authentication page
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
