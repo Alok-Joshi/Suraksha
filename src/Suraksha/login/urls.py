@@ -1,4 +1,7 @@
-from django.urls import  path, include
 
-urlpatterns = []
+from django.urls import path  
 
+
+urlpatterns = [
+    
+]

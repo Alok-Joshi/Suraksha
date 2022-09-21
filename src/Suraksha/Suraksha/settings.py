@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'gps_map',
     'login',
     'register',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
