@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'device_auth',
     'gps_map',
     'login',
-    'register',
+    'channels',
+    'register'
 ]
 
 MIDDLEWARE = [
@@ -75,7 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Suraksha.wsgi.application'
-
+ASGI_APPLICATION = 'Suraksha.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
