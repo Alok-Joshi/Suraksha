@@ -35,7 +35,7 @@ class gps_coordinates(AsyncWebsocketConsumer):
         try:
             redis_coordinate_data = await self.pubsub.get_message(ignore_subscribe_messages = True)
             coordinates = self.process_coordinates(redis_coordinate_data)
-            message = json.dumps({"device_name":self.device_name, "coordinates":coordinates})
+            message = json.dumps(coordinates)
             await self.send(message)
 
         except Exception as e:
