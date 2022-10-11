@@ -27,7 +27,7 @@ SECRET_KEY = 'u0!z)cj9so^s5sg$t4$lx&nn+^pxu_5pp)8@t6ohyxhm8=5$xv'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+REDIS_URL = ""
 
 # Application definition
 
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'device_auth',
     'gps_map',
     'login',
-    'register',
+    'channels',
+    'register'
 ]
 
 MIDDLEWARE = [
@@ -75,7 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Suraksha.wsgi.application'
-
+ASGI_APPLICATION = 'Suraksha.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
