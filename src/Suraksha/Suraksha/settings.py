@@ -27,7 +27,7 @@ SECRET_KEY = 'u0!z)cj9so^s5sg$t4$lx&nn+^pxu_5pp)8@t6ohyxhm8=5$xv'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+REDIS_URL = ""
 
 # Application definition
 
