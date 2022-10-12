@@ -1,6 +1,6 @@
 var map 
 
-server_url = "ws://localhost:8000/data_streamer/ws/coordinates"
+server_url = "ws://localhost:8000/ws/coordinates"
 function initMap(){}
 function change_coordinate(){
 
@@ -16,23 +16,25 @@ class gps_device {
 	constructor(device_name){
 		this.device_name = device_name
 		this.ws = new WebSocket(server_url+'/'+device_name+'/')
-		this.ws.onmessage = this.onmessage
-		this.ws.onopen = this.onopen
+		this.ws.onmessage = this.onmessage.bind(this)
+		this.ws.onopen = this.onopen.bind(this)
 
 		//this.marker = new google.maps.Marker({ map: map,})
 	}
-	 onopen(){
-		let message = { "get_coord":true }
+	 onopen(e){
+
+		let message = { "get_coord":true,}
 		this.ws.send(JSON.stringify(message))
 	 }
 
 	onmessage(message){
 		
-		coords = JSON.stringify(message.data)
+		let coords = JSON.stringify(message.data)
 		console.log(coords)
+		this.ws.send(JSON.stringify({"get_coord":true}))
 		//let coord_obj = new google.maps.LatLng(coords["lat"],coords["long"])
 		//this.marker.setPosition(coord_obj)
-	}
+		}
 
 }
 
