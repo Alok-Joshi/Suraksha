@@ -27,7 +27,7 @@ SECRET_KEY = 'u0!z)cj9so^s5sg$t4$lx&nn+^pxu_5pp)8@t6ohyxhm8=5$xv'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-REDIS_URL = ""
+REDIS_URL = "redis://localhost:6379"
 
 # Application definition
 
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    #USER DEFINED APS#
     'data_streamer',
     'device_auth',
     'gps_map',
@@ -126,3 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+        os.path.join(BASE_DIR,'static'),
+        ]
