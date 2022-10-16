@@ -8,11 +8,12 @@ import pdb
 
 class gps_coordinates(AsyncWebsocketConsumer):
 
-    def process_coordinates(self,coordinates):
+    def process_coordinates(self,device_data):
         """ Parses the coordinates recieved from the redis . Returns a dictionary: {lat: val, long: val} """
+        device_data = device_data.split(",")
+        coordinates = {"lat":device_data[0],"long":device_data[1],}
         return coordinates
-        pass
-
+    
     def get_channel_name(self,device_name):
         return f"{device_name}_channel"
 
@@ -24,6 +25,7 @@ class gps_coordinates(AsyncWebsocketConsumer):
             self.channel_name = self.get_channel_name(self.device_name)
             self.redis_client = aioredis.from_url(REDIS_URL,decode_responses = True)
             self.pubsub = self.redis_client.pubsub()
+            self.last_coordinate = None
 
             await self.pubsub.subscribe(self.channel_name)
 
@@ -34,9 +36,16 @@ class gps_coordinates(AsyncWebsocketConsumer):
 
         try:
             redis_coordinate_data = await self.pubsub.get_message(ignore_subscribe_messages = True)
-            coordinates = self.process_coordinates(redis_coordinate_data)
-            message = json.dumps(coordinates)
-            await self.send(message)
+
+            if( not redis_coordinate_data == None):
+                coordinates = self.process_coordinates(redis_coordinate_data["data"])
+                message = json.dumps(coordinates)
+                self.last_coordinate = message
+                await self.send(message)
+
+            else:
+                message = json.dumps(self.last_coordinate)
+                await self.send(message)
 
         except Exception as e:
             print(e)
