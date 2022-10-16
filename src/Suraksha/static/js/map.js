@@ -4,26 +4,11 @@ server_url = "ws://localhost:8000/ws/coordinates"
 function initMap(){
 
 	const uluru = { lat: -25.344, lng: 131.031 };
-	map = new google.maps.Map(document.getElementById("map"),{zoom :4, center: uluru})
-	
-	document.getElementById("lat").value = 39.984647
-	document.getElementById("long").value =116.311917	
-	let k = JSON.parse("{\"lat\": \"39.995235\", \"long\": \"116.322606\"}")
-	console.log(typeof(k))
+	map = new google.maps.Map(document.getElementById("map"),{zoom :16, center: uluru})
 	new gps_device("device_one",map)
 
 }
 	
-function change_coordinate(){
-
-  lat = document.getElementById("lat").value; 
-  lon = document.getElementById("long").value; 
-  var c1 = new google.maps.LatLng(lat,lon)
-  marker = new google.maps.Marker({map:map,})
-  console.log(marker)
-  marker.setPosition(c1)
-}
-
 window.initMap = initMap
 
 
@@ -58,6 +43,7 @@ class gps_device {
 		}
 		let coord_obj = new google.maps.LatLng(coords.lat,coords["long"])
 		this.marker.setPosition(coord_obj)
+		this.map.setCenter(coord_obj)
 		this.ws.send(JSON.stringify({"get_coord":true}))
 		}
 
