@@ -5,7 +5,7 @@
 	<head>
 		
 	<script async
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?v=3.31&key=&callback=initMap">
 	</script>
 
 		<script src = "{% static  'js/map.js' %}"> </script>
@@ -21,9 +21,6 @@
 		<div id= "main-content">
 			<div id = "device-list">
 				<!-- use django templates context to generate the devices later on -->
-				<button onclick = "change_coordinate()"> Change Coordinates </button>
-				<input id= "lat" type = text>
-				<input id = "long" type = text>
 			
 			</div>
 			<div id = "map">
