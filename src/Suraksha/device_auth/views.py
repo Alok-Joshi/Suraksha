@@ -2,28 +2,34 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from .forms import AddDeviceForm, OwnershipForm
+from .forms import OwnershipForm
 from .models import Device, owns
 import logging
 
-# @login_required
+def device_used(device_uid):
+    """Checks if a given give is already used """
+    result_set = owns.objects.get(device_uid = device_uid)
+    return result_set.exists()
+    
+@login_required
 def own_device(request):
         if request.method == 'GET':
             form = OwnershipForm()
             return render(request, 'device_auth/own_device.html', {'form': form, 'errors':[]})
+
         else:
             form = OwnershipForm(request.POST)
             if(form.is_valid()):
-                # form.save()
-                uid = form.__getitem__('device_mac').value()
+
+                device_uid = form.__getitem__('device_mac').value()
+                device_name = form.__getitem__('device_name').value()
+
                 try:
-                    device = Device.objects.get(pk=uid)
-                    if not device.used:
-                        user = form.__getitem__('user').value()
-                        ownership_obj = owns.objects.create(user=user, device=device)
-                        device.used = True
-                        device.save()
+                    if not device_used(device_uid):
+                        device = Device.objects.get(device_uid = device_uid)
+                        ownership_obj = owns.objects.create(user=request.user, device=device)
                         ownership_obj.save()
+
                         return HttpResponse("<h1>Device Ownership changed sucessfully!</h1>")
                     else:
                         return render(request, 'device_auth/own_device.html', {'form': OwnershipForm(), 'errors':['Entered device is already in use']})
