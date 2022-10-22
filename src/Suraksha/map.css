@@ -1,0 +1,10 @@
+#map {
+		height: 500px;
+		width: 1000px;
+	}
+.main-content div {
+		float: left;
+		clear : none;
+		width: 15%;
+	}
+
