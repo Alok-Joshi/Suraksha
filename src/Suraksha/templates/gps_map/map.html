@@ -4,32 +4,19 @@
 
 	<head>
 		
-	<script async
-    src="https://maps.googleapis.com/maps/api/js?v=3.31&key=&callback=initMap">
-	</script>
-
+		<script async src="https://maps.googleapis.com/maps/api/js?v=3.31&key=&callback=initMap"> </script>
 		<script src = "{% static  'js/map.js' %}"> </script>
-    <style>
-	#map {
-		height: 500px;
-		width: 1000px;
-	}
-	.main-content div {
-		float: left;
-		clear : none;
-		width: 15%;
-	}
-	</style>
+		<link rel = "stylesheet" href = "{% static 'css/map.css' %}">
+
 	</head>
 <body>
 	<div id =  "title-section"> <h1> Suraksha </h1> </div>
 		<div class= "main-content">
 			<div id = "device-list">
-
-			<h3 class = "device"> Device 1 </h3>			
-			<h3 class = "device"> Device 2 </h3>			
-			<h3 class = "device"> Device 3 </h3>			
-			<button> Add a device </button>
+				{% for device in devices: %}
+				<h3 id = {{device.device_uuid}} class = "device"> {{devices.device_name}} </h3>
+				{% endfor %}
+				<button type = "button"> Add a device </button>
 			</div>
 			<div id = "map">
 			</div>

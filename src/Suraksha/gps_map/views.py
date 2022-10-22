@@ -1,13 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from device_auth.models import Device,owns
 
-
+@login_required
 def get_map(request):
     """ Renders the map. Login is required """
-    return render(request,"gps_map/map.html")
-    if(request.user.is_authenticated):
-        #get the devices linked to user, pass them as context to template, render template
-        pass
+    if(request.method == "GET"):
+            devices = owns(user = request.user)
+            return render(request,"gps_map/map.html",{'devices':devices})
 
-    else:
-        #redirect to the login page 
-        pass
