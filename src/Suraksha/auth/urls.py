@@ -9,7 +9,7 @@
 from django.urls import path
 from . import views
 
-app_name = "register"   
+app_name = "auth"   
 
 
 urlpatterns = [
