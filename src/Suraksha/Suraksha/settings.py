@@ -42,8 +42,7 @@ INSTALLED_APPS = [
     'data_streamer',
     'device_auth',
     'gps_map',
-    'login',
-    'register',
+    'auth',
     'crispy_forms'
 ]
 
