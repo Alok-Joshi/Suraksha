@@ -10,7 +10,7 @@ import logging
 def own_device(request):
         if request.method == 'GET':
             form = OwnershipForm()
-            return render(request, 'device_auth/add_device.html', {'form': form, 'errors':[]})
+            return render(request, 'device_auth/own_device.html', {'form': form, 'errors':[]})
         else:
             form = OwnershipForm(request.POST)
             if(form.is_valid()):
@@ -26,11 +26,11 @@ def own_device(request):
                         ownership_obj.save()
                         return HttpResponse("<h1>Device Ownership changed sucessfully!</h1>")
                     else:
-                        return render(request, 'device_auth/add_device.html', {'form': OwnershipForm(), 'errors':['Entered device is already in use']})
+                        return render(request, 'device_auth/own_device.html', {'form': OwnershipForm(), 'errors':['Entered device is already in use']})
                 except Exception as e:
                     logging.error(e)
-                    return render(request, 'device_auth/add_device.html', {'form': OwnershipForm(), 'errors':['Entered device not found']})              
-            return render(request, 'device_auth/add_device.html', {'form': OwnershipForm(), 'errors':["Entered data was invalid", form.errors]})
+                    return render(request, 'device_auth/own_device.html', {'form': OwnershipForm(), 'errors':['Entered device not found']})              
+            return render(request, 'device_auth/own_device.html', {'form': OwnershipForm(), 'errors':["Entered data was invalid", form.errors]})
 
 # Create your views here.
 # class Authenticate(TemplateView):
