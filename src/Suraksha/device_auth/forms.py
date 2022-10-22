@@ -9,4 +9,4 @@ class AddDeviceForm(forms.ModelForm):
 
 class OwnershipForm(forms.Form):
     device_mac = forms.CharField(max_length=20, label="Device UID")
-    user = forms.CharField(max_length=200, label="Username")
+    device_name = forms.CharField(max_length=20, label="Device Name")
