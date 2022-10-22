@@ -1,17 +1,29 @@
-{%load static %}
+{% load static %}
 
 <html>
 
 	<head>
-	
-	</head>
+		
+	<script async
+    src="https://maps.googleapis.com/maps/api/js?v=3.31&key=&callback=initMap">
+	</script>
 
-	<body>
-		<div class= "title-section"> Suraksha </div>
-		<div class= "main-content">
-			<div class = "device-list">
+		<script src = "{% static  'js/map.js' %}"> </script>
+    <style>
+	#map {
+		height: 500px;
+		width: 500px;
+	}
+	</style>
+	</head>
+<body>
+	<div id =  "title-section"> Suraksha </div>
+		<div id= "main-content">
+			<div id = "device-list">
 				<!-- use django templates context to generate the devices later on -->
 			
+			</div>
+			<div id = "map">
 			</div>
 		</div>
 
