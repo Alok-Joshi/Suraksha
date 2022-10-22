@@ -8,4 +8,5 @@ class Device(models.Model):
 
 class owns(models.Model):
     user = models.CharField(max_length=200, null=False)
-    device = models.CharField(max_length=200, null=False)
+    device = models.OneToOneField(Device, on_delete=models.PROTECT)
+    
