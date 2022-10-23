@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'data_streamer',
     'device_auth',
     'gps_map',
-    'login',
+    'user_auth',
+    #'crispy_forms'
     'channels',
-    'register'
 ]
 
 MIDDLEWARE = [
