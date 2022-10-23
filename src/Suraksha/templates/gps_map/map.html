@@ -13,8 +13,8 @@
 	<div id =  "title-section"> <h1> Suraksha </h1> </div>
 		<div class= "main-content">
 			<div id = "device-list">
-				{% for device in devices: %}
-				<h3 id = {{device.device_uuid}} class = "device"> {{devices.device_name}} </h3>
+				{% for device in devices %}
+				<h3 id = "{{device.device_uuid}}" class = "device"> {{devices.device_name}} </h3>
 				{% endfor %}
 				<button type = "button"> Add a device </button>
 			</div>

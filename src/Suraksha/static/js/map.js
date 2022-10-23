@@ -26,6 +26,7 @@ class gps_device {
 		this.ws.onopen = this.onopen.bind(this)
 		this.map = map
 		this.marker = new google.maps.Marker({ map: this.map,})
+		this.current_coords = null
 	}
 	 onopen(e){
 
@@ -45,10 +46,12 @@ class gps_device {
 		if(typeof(coords) == "string"){
 			coords = JSON.parse(coords)
 		}
+
 		let coord_obj = new google.maps.LatLng(coords.lat,coords["long"])
 		this.marker.setPosition(coord_obj)
-		this.map.setCenter(coord_obj)
+		this.current_coords = coord_obj
 		this.ws.send(JSON.stringify({"get_coord":true}))
+
 		}
 
 }
