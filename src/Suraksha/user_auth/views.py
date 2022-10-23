@@ -20,10 +20,10 @@ def register_request(request):
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			return redirect("auth:homepage")
+			return redirect("map:get_map")
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
-	return render (request=request, template_name="register/register.html", context={"register_form":form})
+	return render (request=request, template_name="user_auth/register.html", context={"register_form":form})
 
 def login_request(request):
 	if request.method == "POST":
@@ -35,10 +35,10 @@ def login_request(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("register:homepage")
+				return redirect("map:get_map")
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
-	return render(request=request, template_name="register/login.html", context={"login_form":form})
+	return render(request=request, template_name="user_auth/login.html", context={"login_form":form})

@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'data_streamer',
     'device_auth',
     'gps_map',
-    'auth',
-    'crispy_forms'
+    'user_auth',
+    #'crispy_forms'
     'channels',
 ]
 

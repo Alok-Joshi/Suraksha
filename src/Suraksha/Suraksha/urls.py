@@ -18,8 +18,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', include("register.urls")),
-    path('login/', include("login.urls")),
+    path('auth/', include("user_auth.urls")),
     path('deviceauth/', include("device_auth.urls")),
     path('map/', include('gps_map.urls')),
 
