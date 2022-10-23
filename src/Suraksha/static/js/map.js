@@ -9,8 +9,10 @@ function initMap(){
 
 	for(let i =0; i<device_elements.length; ++i){
 		{
-			new gps_device(device_elements[i].id,map)
+			//new gps_device(device_elements[i].id,map)
+			console.log(device_elements[i])
 		}
+}
 }
 	
 window.initMap = initMap

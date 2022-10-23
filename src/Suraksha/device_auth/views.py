@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from os import device_encoding
+import pdb
+from django.shortcuts import render,redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -8,7 +10,8 @@ import logging
 
 def device_used(device_uid):
     """Checks if a given give is already used """
-    result_set = owns.objects.get(device_uid = device_uid)
+    device = Device.objects.get(device_uid = device_uid)
+    result_set = owns.objects.filter(device = device)
     return result_set.exists()
     
 @login_required
@@ -23,14 +26,14 @@ def own_device(request):
 
                 device_uid = form.__getitem__('device_mac').value()
                 device_name = form.__getitem__('device_name').value()
-
+                #pdb.set_trace()
                 try:
                     if not device_used(device_uid):
                         device = Device.objects.get(device_uid = device_uid)
-                        ownership_obj = owns.objects.create(user=request.user, device=device)
+                        ownership_obj = owns.objects.create(user=request.user, device=device,device_name = device_name)
                         ownership_obj.save()
+                        return redirect("map:get_map")
 
-                        return HttpResponse("<h1>Device Ownership changed sucessfully!</h1>")
                     else:
                         return render(request, 'device_auth/own_device.html', {'form': OwnershipForm(), 'errors':['Entered device is already in use']})
                 except Exception as e:
