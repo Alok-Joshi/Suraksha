@@ -4,24 +4,19 @@
 
 	<head>
 		
-	<script async
-    src="https://maps.googleapis.com/maps/api/js?v=3.31&key=&callback=initMap">
-	</script>
-
+		<script async src="https://maps.googleapis.com/maps/api/js?v=3.31&key=&callback=initMap"> </script>
 		<script src = "{% static  'js/map.js' %}"> </script>
-    <style>
-	#map {
-		height: 500px;
-		width: 500px;
-	}
-	</style>
+		<link rel = "stylesheet" href = "{% static 'css/map.css' %}">
+
 	</head>
 <body>
-	<div id =  "title-section"> Suraksha </div>
-		<div id= "main-content">
+	<div id =  "title-section"> <h1> Suraksha </h1> </div>
+		<div class= "main-content">
 			<div id = "device-list">
-				<!-- use django templates context to generate the devices later on -->
-			
+				{% for device in devices %}
+				<h3 id = "{{device.device_uuid}}" class = "device"> {{devices.device_name}} </h3>
+				{% endfor %}
+				<button type = "button"> Add a device </button>
 			</div>
 			<div id = "map">
 			</div>

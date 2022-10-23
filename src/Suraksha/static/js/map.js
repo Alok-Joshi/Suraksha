@@ -5,8 +5,12 @@ function initMap(){
 
 	const uluru = { lat: -25.344, lng: 131.031 };
 	map = new google.maps.Map(document.getElementById("map"),{zoom :16, center: uluru})
-	new gps_device("device_one",map)
+	var device_elements = document.getElementsByClassName("device")
 
+	for(let i =0; i<device_elements.length; ++i){
+		{
+			new gps_device(device_elements[i].id,map)
+		}
 }
 	
 window.initMap = initMap
@@ -22,6 +26,7 @@ class gps_device {
 		this.ws.onopen = this.onopen.bind(this)
 		this.map = map
 		this.marker = new google.maps.Marker({ map: this.map,})
+		this.current_coords = null
 	}
 	 onopen(e){
 
@@ -41,10 +46,12 @@ class gps_device {
 		if(typeof(coords) == "string"){
 			coords = JSON.parse(coords)
 		}
+
 		let coord_obj = new google.maps.LatLng(coords.lat,coords["long"])
 		this.marker.setPosition(coord_obj)
-		this.map.setCenter(coord_obj)
+		this.current_coords = coord_obj
 		this.ws.send(JSON.stringify({"get_coord":true}))
+
 		}
 
 }
