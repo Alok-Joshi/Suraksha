@@ -13,10 +13,17 @@
 		<div class= "main-content">
 			<div id = "device-list">
 				{% for result_set_obj in result_set %}
-				<h3 id = "{{result_set_obj.device.device_uid}}" class = "device"> {{result_set_obj.device_name}} </h3>
+				<div class = "device-card" id = "{{result_set_obj.device.device_uid}}">
+					<h3  class = "device"> Name: {{result_set_obj.device_name}} </h3> 
+					<h3> MAC: {{result_set_obj.device.device_uid}} </h3> 
+				</div> 
 				{% endfor %}
-				<button type = "button" onclick = 'window.location.href = "{% url 'device_auth:own_device' %}"'> Add a device </button>
+				<button id = "add_device" type = "button" onclick = 'window.location.href = "{% url 'device_auth:own_device' %}"'> Add a device </button>
 			</div>
+
+
+
+
 			<div id = "map">
 			</div>
 		</div>
