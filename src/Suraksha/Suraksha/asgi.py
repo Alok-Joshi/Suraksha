@@ -16,6 +16,7 @@ from data_streamer.routing import websocket_urlpatterns
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Suraksha.settings')
 
 application = ProtocolTypeRouter({
+        "http":get_asgi_application(),
         "websocket": AllowedHostsOriginValidator(
             AuthMiddlewareStack(
                 URLRouter(
