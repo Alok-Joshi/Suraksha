@@ -26,9 +26,22 @@ class device_manager{
 	 add_device(device_element){
 		 var new_device = new gps_device(device_element.id,this.map)
 		 this.devices[device_element.id] = new_device
-		 device_element.addEventListener('click',() => { this.device_clicked(device_element.id); });
+		 device_element.addEventListener('click',() => { this.set_color(device_element); this.device_clicked(device_element.id); });
 
 	 } 
+	 set_color(device_element){
+		 this.reset_all_divs()
+		 device_element.style.backgroundColor = 'blue'
+	 }
+
+	 reset_all_divs(){
+		 //Sets color of all divs to white 
+	
+			for (let device_id in this.devices){
+				document.getElementById(device_id).style.backgroundColor = 'white'
+			}
+	 }
+
 	 device_clicked(device_id){
 	   this.devices[device_id].set_focus()
 	 }
