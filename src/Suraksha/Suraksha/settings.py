@@ -32,6 +32,7 @@ REDIS_URL = "redis://localhost:6379"
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,9 +43,9 @@ INSTALLED_APPS = [
     'data_streamer',
     'device_auth',
     'gps_map',
-    'login',
+    'user_auth',
+    #'crispy_forms'
     'channels',
-    'register'
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR,'static'),
         ]
+
+LOGIN_URL = "/auth/login/"
+LOGIN_REDIRECT_URL = "/auth/login/"
