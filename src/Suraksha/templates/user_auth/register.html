@@ -8,18 +8,93 @@
     {% load static%}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<style>
+		.body{
+			text-align:center;
+		}
+		.card{
+			align-content: center;
+			margin-top:100px;
+		}
+		.card-header{
+			background-color: #00030D;
+			color: white;
+			height:70px;
+			font-size:45px;
+			font-family:'Noto Serif', serif;
+			text-align:center;
+		}
+		.card-body{
+			align-content: center;
+			background-color: #F3F5F4;
+			font-family: 'Gentium Book Plus', serif;
+			font-size:20px;
+		}
+		.form-control{
+			border-radius: 20px;
+		}
+		.btn.btn-primary{
+			background-color: #00030D;
+			border-color: #00030D;
+			border-radius: 20px;
+			width: 100px;
+			font-family: 'Gentium Book Plus', serif;
+			margin-left: 600px;
+		  }
+		.btn.btn-primary:hover{
+				background-color: #060e23;
+				border-color:#060e23;
+		  }
+		  .text-center{
+			padding-top:10px;
+			font-family:'Gentium Book Plus', serif;
+		  }
+	</style>
 </head>  
-<body> 
+<body>
 
 <!--Register--> 
 <div class="container py-5">
-	<h1>Register</h1>
 	<form method="POST">
 		{% csrf_token %}
-		{{ register_form}}                    
-		<button class="btn btn-primary" type="submit">Register</button>
-	</form>
+		<div class="card">
+			<h5 class="card-header">Registration Form</h5>
+			<div class="card-body">
+				<form>
+					<div class="row mb-3">
+					  <label for="inputUsername3" class="col-sm-2 col-form-label">Username:</label>
+					  <div class="col-sm-10">
+						<input type="text" class="form-control" id="inputUsername3">
+					  </div>
+					</div>
+					<div class="row mb-3">
+						<label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+						<div class="col-sm-10">
+						  <input type="email" class="form-control" id="inputEmail3">
+						</div>
+					  </div>
+					<div class="row mb-3">
+					  <label for="inputPassword3" class="col-sm-2 col-form-label">Password:</label>
+					  <div class="col-sm-10">
+						<input type="password" class="form-control" id="inputPassword3">
+					  </div>
+					</div>
+					<div class="row mb-3">
+					  <label for="inputConfirmPassword3" class="col-sm-2 col-form-label">Confirm Password:</label>
+					  <div class="col-sm-10">
+						<input type="password" class="form-control" id="inputConfirmPassword3">
+					  </div>
+					</div>
+					<button type="submit" class="btn btn-primary">Register</button>
+				  </form>
+				  </div>
+			</div>
+			</form>
+		<!--{{ register_form}}
+		<button type="submit" class="btn btn-primary">Register</button>       
+		</form>
+		</div>-->
 	<p class="text-center">If you already have an account, <a href="{% url 'user_auth:login' %}">login</a> instead.</p>
 </div>
 </body>

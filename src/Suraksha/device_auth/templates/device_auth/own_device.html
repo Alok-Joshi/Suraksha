@@ -5,16 +5,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Device</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<style>
+		.body{
+			text-align:center;
+		}
+		.card{
+			align-content: center;
+			margin-top:100px;
+		}
+		.card-header{
+			background-color: #00030D;
+			color: white;
+			height:70px;
+			font-size:45px;
+			font-family:'Noto Serif', serif;
+			text-align:center;
+		}
+		.card-body{
+			align-content: center;
+			background-color: #F3F5F4;
+			font-family: 'Gentium Book Plus', serif;
+			font-size:20px;
+		}
+		.form-control{
+			border-radius: 20px;
+		}
+		.btn.btn-primary{
+			background-color: #00030D;
+			border-color: #00030D;
+			border-radius: 20px;
+			width: 200px;
+			font-family: 'Gentium Book Plus', serif;
+			margin-left: 520px;
+		  }
+		.btn.btn-primary:hover{
+				background-color: #060e23;
+				border-color:#060e23;
+		  }
+		  .text-center{
+			padding-top:10px;
+			font-family:'Gentium Book Plus', serif;
+		  }
+	</style>
 </head>
 <body>
-    <form action="" method="post">
+    
+<div class="container py-5">
+	<form method="POST">
+		{% csrf_token %}
+    {% for e in errors %}
+    <h1>{{e}}</h1>
+    {% endfor %}
+		<div class="card">
+			<h5 class="card-header">Add Your Device</h5>
+			<div class="card-body">
+				<form>
+					<div class="row mb-3">
+					  <label for="inputDeviceName3" class="col-sm-2 col-form-label">Device Name:</label>
+					  <div class="col-sm-10">
+						<input type="text" class="form-control" id="inputDeviceName3">
+					  </div>
+					</div>
+					<div class="row mb-3">
+						<label for="inputDeviceUID3" class="col-sm-2 col-form-label">Device UID:</label>
+						<div class="col-sm-10">
+						  <input type="number" class="form-control" id="inputDeviceUID3">
+						</div>
+					  </div>
+					<button type="submit" class="btn btn-primary">Register Device</button>
+				  </form>
+			</div>
+		  </div>
+		<!--{{ register_form}}-->            
+	</form>
+</div>
+    <!--<form action="" method="post">
         {% csrf_token %}
         {% for e in errors %}
         <h1>{{e}}</h1>
         {% endfor %}
         {{form}}
         <button type="submit">Submit</button>
-    </form>
+    </form>-->
     
 </body>
 </html>

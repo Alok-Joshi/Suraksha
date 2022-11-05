@@ -21,5 +21,4 @@ urlpatterns = [
     path('auth/', include("user_auth.urls")),
     path('deviceauth/', include("device_auth.urls")),
     path('map/', include('gps_map.urls')),
-
 ]
