@@ -53,7 +53,7 @@
 	</style>
 </head>
 <body>
-    
+    {% load crispy_forms_tags %}
 <div class="container py-5">
 	<form method="POST">
 		{% csrf_token %}
@@ -65,15 +65,19 @@
 			<div class="card-body">
 				<form>
 					<div class="row mb-3">
-					  <label for="inputDeviceName3" class="col-sm-2 col-form-label">Device Name:</label>
+					  <label for="inputDeviceName3" class="col-sm-2 col-form-label">
+
+					  </label>
+					  {{form.device_name|as_crispy_field}}
 					  <div class="col-sm-10">
-						<input type="text" class="form-control" id="inputDeviceName3">
+						<!--<input type="text" class="form-control" id="inputDeviceName3">-->
 					  </div>
 					</div>
 					<div class="row mb-3">
-						<label for="inputDeviceUID3" class="col-sm-2 col-form-label">Device UID:</label>
+						<label for="inputDeviceUID3" class="col-sm-2 col-form-label"></label>
+						{{form.device_mac|as_crispy_field}}
 						<div class="col-sm-10">
-						  <input type="number" class="form-control" id="inputDeviceUID3">
+						  <!--<input type="number" class="form-control" id="inputDeviceUID3">-->
 						</div>
 					  </div>
 					<button type="submit" class="btn btn-primary">Register Device</button>
