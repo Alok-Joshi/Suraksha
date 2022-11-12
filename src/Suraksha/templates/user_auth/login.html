@@ -9,50 +9,13 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-</head> 
-<style> 
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap');
-  body{
-    background:#00030D;
-    text-align: center; 
-}
-.col-sm-10{
-  padding-left:220px;
-}
-.container{
-  align-content: center;
-  padding-top: 250px;
-}
-.form-control{
-  border-radius: 20px;
-}
-.btn.btn-primary{
-  background-color: #071FF5;
-  border-color: #071FF5;
-  border-radius: 20px;
-  width: 100px;
-  font-family: 'Gentium Book Plus', serif;
-}
-#inputEmail3{
-  margin-top:20px;
-  font-family: 'Gentium Book Plus', serif;
-}
-#inputPassword3{
-  margin-top:10px;
-  font-family: 'Gentium Book Plus', serif;
-}
-.text-center{
-  color:white;
-  padding-top:10px;
-  font-family:'Gentium Book Plus', serif;
-}
-</style>
+</head>  
 <body> 
   {% load crispy_forms_tags %}  
 <!--Login--> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<div class="container">
-  <h1 style="color:white; font-size:80px; margin-bottom:20px; font-family:'Noto Serif', serif;">SURAKSHA</h1>
+<div class="container py-5">
+  <h1>Login</h1>
   <form method="POST">
     {% csrf_token %}
     <div class="row mb-3">
@@ -70,8 +33,7 @@
     <!--{{ login_form }}
     <button type="submit" class="btn btn-primary">Login</button>-->
   </form>
-  <p class="text-center">Don't have an account? <a href="{% url 'user_auth:register' %}">Create an account</a>.</p>
-  <!--<p class="text-center">Don't have an account? <a href="/register/register">Create an account</a>.</p>-->
+  <p class="text-center">Don't have an account? <a href="/register/register">Create an account</a>.</p>
 </div>
 </body>
 </html>
