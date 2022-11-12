@@ -44,9 +44,10 @@ INSTALLED_APPS = [
     'device_auth',
     'gps_map',
     'user_auth',
-    #'crispy_forms'
+    'crispy_forms',
     'channels',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
