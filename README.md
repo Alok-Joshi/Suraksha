@@ -19,12 +19,9 @@ Suraksha is a minimalistic, low-latency GPS tracking system specifically designe
 
 ### Architecture
 
-- GPS Tracking Flow:
+![GPS Tracking Flow](images/architecture.png)
 
-
-
-- Database Schema Diagram
-
+![Database Schema Diagram](images/schema_diagram.png)
 
 ### Project Structure
 
